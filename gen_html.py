@@ -2,7 +2,8 @@ import os
 
 def gen_file(imagepath_list, extension_list):
 
-	os.remove('current_images.html')
+	if os.path.exists('current_images.html'):
+		os.remove('current_images.html')
 
 	f = open('current_images.html','w') #move to after loop?
 	
