@@ -2,3 +2,6 @@
 *.iml
 __pycache__/
 images/
+uploads/
+venv/
+current_images.html

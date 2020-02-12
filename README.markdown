@@ -1,5 +1,5 @@
 Tornado-Upload
 ============
 
-Demo Application showing implimentation of upload functionality in Tornado
+Demo Application showing implementation of upload functionality in Tornado
 

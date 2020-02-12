@@ -1,8 +1,11 @@
+import os
+
 import tornado.web
 import tornado.ioloop
 from PIL import Image, ImageOps
 import model_image_matching
 import gen_html
+
 
 class uploadImgHandler(tornado.web.RequestHandler):
     
@@ -15,6 +18,9 @@ class uploadImgHandler(tornado.web.RequestHandler):
         #n = self.request.form['quantity']
         #n = 5
         n = self.get_argument("quantity", "")
+
+        if not os.path.exists('uploads'):
+            os.makedirs('uploads')
 
         with open('uploads/' + filename, 'wb') as tempfile:
           tempfile.write(body)
@@ -32,9 +38,7 @@ class uploadImgHandler(tornado.web.RequestHandler):
 
         imagepaths = [url_path + matching_extensions[i] for i in range(n)]
 
-        gen_html.gen_file(imagepaths, matching_extensions)
-
-        self.render("current_images.html")
+        self.render('matches.html', items=imagepaths)
 
 
     def get(self):
