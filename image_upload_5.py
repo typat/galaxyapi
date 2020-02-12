@@ -2,9 +2,7 @@ import os
 
 import tornado.web
 import tornado.ioloop
-from PIL import Image, ImageOps
 import model_image_matching
-import gen_html
 
 
 class uploadImgHandler(tornado.web.RequestHandler):
@@ -37,8 +35,9 @@ class uploadImgHandler(tornado.web.RequestHandler):
         original_path = url_path + filename
 
         imagepaths = [url_path + matching_extensions[i] for i in range(n)]
+        model = list(zip(matching_extensions, imagepaths))
 
-        self.render('matches.html', items=imagepaths)
+        self.render('file_upload_form.html', items=model)
 
 
     def get(self):
